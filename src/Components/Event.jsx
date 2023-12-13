@@ -1,6 +1,7 @@
 import Attendees from "./Attendees";
 
-export default function Event({events, toggleEventAttendees, showAttendees}) {
+export default function Event({events, toggleEventAttendees, showAttendees, updateEventAttendance}) {
+  
   return (<ul>
     {events.map((event) => {
       const { people: attendees } = event;
@@ -15,7 +16,7 @@ export default function Event({events, toggleEventAttendees, showAttendees}) {
             <br />
             <span>Organized by: {event.organizer} </span>
             <br />
-            <Attendees toggleEventAttendees={toggleEventAttendees}  showAttendees={showAttendees} attendees={attendees}/>
+            <Attendees toggleEventAttendees={toggleEventAttendees}  showAttendees={showAttendees} attendees={attendees} updateEventAttendance={updateEventAttendance} event={event}/>
           </li>
         </>
       );

@@ -98,11 +98,19 @@ function App() {
       <main>
         <div className="new-event">
           <>
-            <NewEventForm handleSubmit={handleSubmit} handleSelectChange={handleSelectChange}  handleTextChange={handleTextChange}  newEvent={newEvent} />
+            <NewEventForm 
+            handleSubmit={handleSubmit}
+            handleSelectChange={handleSelectChange}
+            handleTextChange={handleTextChange}
+            newEvent={newEvent} />
           </>
         </div>
         <div className="events">
-          <Event toggleEventAttendees={toggleEventAttendees} showAttendees={showAttendees} events={events} />
+          <Event 
+          toggleEventAttendees={toggleEventAttendees} 
+          showAttendees={showAttendees} 
+          events={events} 
+          updateEventAttendance={updateEventAttendance}/>
         </div>
       </main>
       <>
