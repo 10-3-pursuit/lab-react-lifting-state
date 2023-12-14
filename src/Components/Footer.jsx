@@ -1,3 +1,9 @@
 export default function Footer() {
-  return;
+  return(
+    <ul>
+      <li>Contact</li>
+      <li>About</li>
+      <li>Legal</li>
+    </ul>
+  );
 }
