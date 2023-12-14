@@ -1,7 +1,4 @@
-// Attendee.jsx
-import React from 'react';
-
-const Attendee = ({ attendee, updateAttendance, eventId }) => {
+const Attendee = ({ attendee, updateEventAttendance, event }) => {
   return (
     <div key={attendee.id} className="attendee">
       <p>
@@ -13,7 +10,7 @@ const Attendee = ({ attendee, updateAttendance, eventId }) => {
         </span>
       </p>
       <p>
-        <button className="clickable" onClick={() => updateEventAttendance(eventId, attendee.id)}>
+        <button className="clickable" onClick={() => updateEventAttendance(event.id, attendee.id)}>
           Attending:
         </button>
         <span>{attendee.attendance ? '✅' : '❌'}</span>

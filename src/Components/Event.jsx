@@ -1,26 +1,30 @@
-// Event.jsx
-import React, { useState } from 'react';
-import Attendees from './Attendees';
+import Attendess from "./Attendees"
 
-const Event = ({ event, updateEventAttendance }) => {
-  const [showAttendees, setShowAttendees] = useState(false);
-
+function Event({ events, updateEventAttendance, toggleEventAttendees, showAttendees }) {
   return (
-    <li>
-      <img src={event.eventImage} alt={event.name} />
-      <h5>
-        {event.name} {event.eventType}
-      </h5>
-      <br />
-      <span>Organized by: {event.organizer} </span>
-      <br />
-      <button onClick={() => setShowAttendees(!showAttendees)}>
-        {!showAttendees ? 'Show Attendees' : 'Hide Attendees'}
-      </button>
+    <ul>
+      {events.map((event) => {
+        const { people: attendees } = event;
 
-      {showAttendees && <Attendees attendees={event.people} updateAttendance={updateEventAttendance} eventId={event.id} />}
-    </li>
+        return (
+          <li key={event.id}>
+            <img src={event.eventImage} alt={event.name} />
+            <h5>
+              {event.name} {event.eventType}
+            </h5>
+            <br />
+            <span>Organized by: {event.organizer} </span>
+            <br />
+            <button onClick={() => toggleEventAttendees(event.id)}>
+              {!showAttendees ? 'Show Attendees' : 'Hide Attendees'}
+            </button>
+
+            <Attendess attendees={attendees} updateEventAttendance={updateEventAttendance} event={event} />
+          </li>
+        );
+      })}
+    </ul>
   );
-};
+}
 
 export default Event;
