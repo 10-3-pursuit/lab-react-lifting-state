@@ -1,7 +1,7 @@
 export default function Attendee({ attendee, event, updateEventAttendance }) {
   return (
     <>
-      <div key={attendee.id} className="attendee">
+      <div className="attendee">
         <p>
           <img
             src={attendee.avatar}
