@@ -1,5 +1,6 @@
 import Attendee from "./Attendee";
 
+// use the props
 export default function Attendees({
   showAttendees,
   attendees,
