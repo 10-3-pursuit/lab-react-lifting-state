@@ -29,12 +29,12 @@ You have a fully functional app. It can:
 - Toggles the attendance of any attendee per event
 - Toggles show/hide attendee list\*
 
-> **Note:** In the app's present state, when you toggle show/hide attendees it toggles show/hide for all events. Your job will be to create components with their own state so that only the event that is selected has its attendees view toggled to fix this bug (pass the final Cypress test).
+> **Note:** In the app's present state, when you toggle show/hide attendees it toggles show/hide for all events. Your job will be to create components with their own state so that only the event that is selected has its attendees view toggled to fix this bug.
 
 You should move the JSX into the correct components:
 
 - **Header**. `header` is top level HTML element.
-- **Footer**. `footer` is top level HTML element.
+- **Footer**. `footer` is bottom level HTML element.
 - **NewEventForm**. `form` is top level HTML element.
 - **Event**. `li` with className `event` is the top level HTML element.
 - **Attendees**. `button` with text `Show/Hide Attendees` and `div` with className `attendees` are the top level HTML elements.
