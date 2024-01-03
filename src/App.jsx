@@ -3,7 +3,7 @@ import eventsData from "./data";
 import { v1 as generateUniqueID } from "uuid";
 import Event from "./Components/Event";
 import Footer from "./Components/Footer";
-// import Header from "./Components/Header";
+import Header from "./Components/Header";
 import NewEventForm from "./Components/NewEventForm";
 
 
@@ -79,11 +79,7 @@ function App() {
 
   return (
     <div className="App">
-      <>
-        <header>
-          <h1 className="color-change-5x">RSVP App</h1>
-        </header>
-      </>
+      <Header />
       <main>
         <NewEventForm
         handleSubmit={handleSubmit} handleTextChange= {handleTextChange} newEvent = {newEvent} handleSelectChange={handleSelectChange} />
