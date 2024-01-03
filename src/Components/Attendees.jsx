@@ -1,8 +1,8 @@
+import Attendee from "./Attendee";
 export default function Attendees({ showAttendees, attendees, event, updateEventAttendance, toggleEventAttendees }) {
   if (!showAttendees) return null;
   return (
-    <div className="attendees">
-      {/* map over attendees */}
+     <div className="attendees">
       <>
                       <button onClick={toggleEventAttendees}>
                         {!showAttendees ? "Show Attendees" : "Hide Attendees"}
@@ -12,7 +12,8 @@ export default function Attendees({ showAttendees, attendees, event, updateEvent
                         <div className="attendees">
                           {attendees.map((attendee) => (
                             <>
-                              <div key={attendee.id} className="attendee">
+                            {/* goes in Attendee.jsx */}
+                              {/* <div key={attendee.id} className="attendee">
                                 <p>
                                   <img
                                     src={attendee.avatar}
@@ -44,7 +45,7 @@ export default function Attendees({ showAttendees, attendees, event, updateEvent
                                 <p>
                                   <span>Note:</span> {attendee.note}
                                 </p>
-                              </div>
+                              </div> */}
                             </>
                           ))}
                         </div>

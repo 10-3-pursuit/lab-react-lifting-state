@@ -1,7 +1,7 @@
 import { useState } from "react";
 import eventsData from "./data";
 import { v1 as generateUniqueID } from "uuid";
-// import Attendees from "./Attendees";
+//import Attendees from "./Attendees";
 import Event from "./Components/Event";
 // import Footer from "./Components/Footer";
 // import Header from "./Components/Header";
@@ -91,7 +91,8 @@ function App() {
           <div className="events">
           {/* <ul> added to Event.jsx */}
         <Event events={events} toggleEventAttendees={toggleEventAttendees} updateEventAttendance={updateEventAttendance} />
-        <Attendees showAttendees={showAttendees} toggleEventAttendees={toggleEventAttendees} updateEventAttendance={updateEventAttendance}/>
+        {/* Attendees prop goes in Events.jsx to continue data flow */}
+        {/* <Attendees showAttendees={showAttendees} toggleEventAttendees={toggleEventAttendees} updateEventAttendance={updateEventAttendance}/> */}
           {/* </ul> */}
           </div>
       </main>
