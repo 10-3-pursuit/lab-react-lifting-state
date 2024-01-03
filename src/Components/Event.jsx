@@ -1,9 +1,5 @@
-
 import Attendees from './Attendees';
-export default function Event({ events,  updateEventAttendance, showAttendees }) {
-  
-
-  
+export default function Event({ events, updateEventAttendance, showAttendees, toggleEventAttendees }) {
   return (
   <ul>
     {events.map((event) => {
@@ -18,13 +14,13 @@ export default function Event({ events,  updateEventAttendance, showAttendees })
           <br />
           <span>Organized by: {event.organizer} </span>
           <br />
-          <Attendees events={events} showAttendees={showAttendees} updateEventAttendance={updateEventAttendance} attendees={attendees}/>
+          <Attendees events={events} showAttendees={showAttendees} updateEventAttendance={updateEventAttendance} attendees={attendees} toggleEventAttendees={toggleEventAttendees}/>
       </li>
       </>
       );
       })}
   </ul>
-  )
+  );
 }
 
 // attendees is nested inside events so add html for attendees to Attendees.jsx
