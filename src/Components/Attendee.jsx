@@ -1,3 +1,3 @@
-export default function Attendee() {
-  return;
+export default function Attendee({showAttendees}) {
+  return
 }

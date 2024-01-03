@@ -1,4 +1,16 @@
 export default function NewEventForm({ handleSubmit, handleTextChange, newEvent, handleSelectChange }) {
+  function addEvent() {
+    const createEvent = {
+      id: generateUniqueID(),
+      eventType: selectOption,
+      name: newEvent.name,
+      organizer: newEvent.organizer,
+      eventImage: newEvent.eventImage || null,
+      date: newEvent.date,
+      people: [],
+    };
+    handleAddEvent(createEvent);
+  }
   function handleSubmit(e) {
     e.preventDefault();
     addEvent();
