@@ -1,5 +1,6 @@
 export default function Attendee({ attendee }) {
   return (
+    <>
   <div key={attendee.id} className="attendee">
     <p>
       <img src={attendee.avatar} alt={attendee.firstName} />
@@ -20,5 +21,6 @@ export default function Attendee({ attendee }) {
       <span>Note:</span> {attendee.note}
     </p>
   </div>
+  </>
   );
 }

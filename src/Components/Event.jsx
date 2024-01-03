@@ -1,11 +1,10 @@
 import Attendees from './Attendees';
 export default function Event({ events, updateEventAttendance, showAttendees, toggleEventAttendees }) {
   return (
-  <ul>
+    <ul>
     {events.map((event) => {
       const { people: attendees } = event;
       return (
-      <>
       <li key={event.id}>
         <img src={event.eventImage} alt={event.name} />
           <h5>
@@ -14,12 +13,11 @@ export default function Event({ events, updateEventAttendance, showAttendees, to
           <br />
           <span>Organized by: {event.organizer} </span>
           <br />
-          <Attendees events={events} showAttendees={showAttendees} updateEventAttendance={updateEventAttendance} attendees={attendees} toggleEventAttendees={toggleEventAttendees}/>
+          <Attendees showAttendees={showAttendees} attendees={attendees} event={event}  updateEventAttendance={updateEventAttendance} toggleEventAttendees={toggleEventAttendees} />
       </li>
-      </>
       );
       })}
-  </ul>
+      </ul>
   );
 }
 

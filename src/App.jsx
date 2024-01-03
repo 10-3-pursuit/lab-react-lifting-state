@@ -1,10 +1,11 @@
 import { useState } from "react";
 import eventsData from "./data";
-import { v1 as generateUniqueID } from "uuid";
+// import { v1 as generateUniqueID } from "uuid";
 import Event from "./Components/Event";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 import NewEventForm from "./Components/NewEventForm";
+import "./index.css"
 
 
 function App() {
@@ -43,17 +44,7 @@ function App() {
     });
   }
 
-  function resetEventForm() {
-    setNewEvent({
-      id: "",
-      eventType: "",
-      name: "",
-      organizer: "",
-      eventImage: "",
-      date: "",
-    });
-    setSelectOption("");
-  }
+
 
   function handleAddEvent(event) {
     setEvents([event, ...events]);
@@ -82,18 +73,16 @@ function App() {
       <Header />
       <main>
         <NewEventForm
-        handleSubmit={handleSubmit} handleAddEvent={handleAddEvent} handleTextChange= {handleTextChange} newEvent = {newEvent} handleSelectChange={handleSelectChange} />
+        handleSubmit={handleSubmit} handleTextChange= {handleTextChange} handleAddEvent={handleAddEvent} newEvent = {newEvent} setNewEvent={setNewEvent} handleSelectChange={handleSelectChange} selectOption={selectOption} />
           <div className="events">
           {/* <ul> added to Event.jsx */}
-        <Event events={events} toggleEventAttendees={toggleEventAttendees} updateEventAttendance={updateEventAttendance} />
-        {/* Attendees prop goes in Events.jsx to continue data flow */}
-        {/* <Attendees showAttendees={showAttendees} toggleEventAttendees={toggleEventAttendees} updateEventAttendance={updateEventAttendance}/> */}
+            <Event events={events} updateEventAttendance={updateEventAttendance} showAttendees={showAttendees} toggleEventAttendees={toggleEventAttendees} />
+            {/* Attendees prop goes in Events.jsx to continue data flow */}
+            {/* <Attendees showAttendees={showAttendees} toggleEventAttendees={toggleEventAttendees} updateEventAttendance={updateEventAttendance}/> */}
           {/* </ul> */}
           </div>
       </main>
-      <>
-        <Footer />
-      </>
+      <Footer />
     </div>
   );
 }

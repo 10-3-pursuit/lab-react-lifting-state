@@ -1,4 +1,5 @@
-export default function NewEventForm({ handleSubmit, handleTextChange, handleAddEvent, newEvent, handleSelectChange }) {
+import { v1 as generateUniqueID } from "uuid";
+export default function NewEventForm({ handleSubmit, handleTextChange, handleAddEvent, newEvent, setNewEvent, handleSelectChange, selectOption}) {
   function addEvent() {
     const createEvent = {
       id: generateUniqueID(),
@@ -10,6 +11,17 @@ export default function NewEventForm({ handleSubmit, handleTextChange, handleAdd
       people: [],
     };
     handleAddEvent(createEvent);
+  }
+  function resetEventForm() {
+    setNewEvent({
+      id: "",
+      eventType: "",
+      name: "",
+      organizer: "",
+      eventImage: "",
+      date: "",
+    });
+    setSelectOption("");
   }
   function handleSubmit(e) {
     e.preventDefault();
