@@ -1,4 +1,4 @@
-export default function NewEventForm({ handleSubmit, handleTextChange, newEvent, handleSelectChange }) {
+export default function NewEventForm({ handleSubmit, handleTextChange, handleAddEvent, newEvent, handleSelectChange }) {
   function addEvent() {
     const createEvent = {
       id: generateUniqueID(),

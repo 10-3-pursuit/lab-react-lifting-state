@@ -82,7 +82,7 @@ function App() {
       <Header />
       <main>
         <NewEventForm
-        handleSubmit={handleSubmit} handleTextChange= {handleTextChange} newEvent = {newEvent} handleSelectChange={handleSelectChange} />
+        handleSubmit={handleSubmit} handleAddEvent={handleAddEvent} handleTextChange= {handleTextChange} newEvent = {newEvent} handleSelectChange={handleSelectChange} />
           <div className="events">
           {/* <ul> added to Event.jsx */}
         <Event events={events} toggleEventAttendees={toggleEventAttendees} updateEventAttendance={updateEventAttendance} />
