@@ -1,8 +1,8 @@
-//import Attendee from "./Attendee";
+import Attendee from "./Attendee";
 export default function Attendees({ showAttendees, attendees, event, updateEventAttendance, toggleEventAttendees }) {
-  if (!showAttendees) return null;
+  //if (!showAttendees) return null;
   return (
-     <div className="attendees">
+    // removed extra div with className attendees
       <>
       <button onClick={toggleEventAttendees}>
         {!showAttendees ? "Show Attendees" : "Hide Attendees"}
@@ -16,6 +16,5 @@ export default function Attendees({ showAttendees, attendees, event, updateEvent
       </div>
       ) : null}
       </>
-    </div>
   );
 }

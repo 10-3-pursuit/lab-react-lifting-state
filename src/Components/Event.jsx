@@ -1,7 +1,7 @@
 import Attendees from './Attendees';
 import { useState } from "react";
 
-export default function Event({ event, attendees, updateEventAttendance }) {
+export default function Event({ event, attendees, updateEventAttendance }) { // put useState data as param in {}
   const [showAttendees, setShowAttendees] = useState(false); // This controls whether the attendees of an event are displayed.
   function toggleEventAttendees() {
     setShowAttendees(!showAttendees);

@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { v1 as generateUniqueID } from "uuid";
-export default function NewEventForm({ handleAddEvent, useState }) {
+export default function NewEventForm({ handleAddEvent }) {
 
   const [selectOption, setSelectOption] = useState(""); // const [selectOption, setSelectOption] = useState("");: Initializes selectOption state to an empty string. It holds the selected option for the event type.
 
@@ -57,8 +57,6 @@ export default function NewEventForm({ handleAddEvent, useState }) {
   }
 
   return (
-    <div className="new-event">
-        <div className="new-event">
           <>
             <form onSubmit={handleSubmit}>
               <h3>Create a new event</h3>
@@ -98,7 +96,5 @@ export default function NewEventForm({ handleAddEvent, useState }) {
               <input type="submit" />
             </form>
           </>
-        </div>
-        </div>
   );
 }
