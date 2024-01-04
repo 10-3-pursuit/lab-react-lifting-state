@@ -8,7 +8,8 @@ export default function Event({ event, attendees, updateEventAttendance }) { // 
   }
   return (
     // as per README.md instructions add className "event" to li
-      <li className='event'>
+    // changed it to events because of className in CSS
+      <li className='events'>
         <img src={event.eventImage} alt={event.name} />
           <h5>
             {event.name} {event.eventType}
