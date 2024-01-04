@@ -3,9 +3,9 @@ import { useState } from "react";
 import { v1 as generateUniqueID } from "uuid";
 export default function NewEventForm({ handleAddEvent }) {
 
-  const [selectOption, setSelectOption] = useState(""); // const [selectOption, setSelectOption] = useState("");: Initializes selectOption state to an empty string. It holds the selected option for the event type.
+  const [selectOption, setSelectOption] = useState(""); // const [selectOption, setSelectOption] = useState("");: Initializes selectOption state to an empty string. It holds the selected option for the event type. Tracks the selected event type.
 
-  const [newEvent, setNewEvent] = useState({
+  const [newEvent, setNewEvent] = useState({ //used to define newEvent state, which holds the current state of the form fields. Each field in the newEvent object corresponds to a field in your form.
     id: "",
     eventType: "",
     name: "",
@@ -15,22 +15,22 @@ export default function NewEventForm({ handleAddEvent }) {
     people: [],
   });
 
-  function handleTextChange(e) {
+  function handleTextChange(e) { // updates the newEvent state when a text field in the form changes
     setNewEvent({
-      ...newEvent,
+      ...newEvent, // spread operator used to keep the existing state (makes copy of newEvent), and [e.target.id]: e.target.value updates the specific field that triggered the change
       [e.target.id]: e.target.value,
     });
   }
 
-  function handleSelectChange(e) {
+  function handleSelectChange(e) { // specifically for handling changes in the select dropdown
     setSelectOption(e.target.value);
   }
   function handleSubmit(e) {
-    e.preventDefault();
-    addEvent();
-    resetEventForm();
+    e.preventDefault(); //  stops the default form submission behavior, which would cause a page reload
+    addEvent(); // creates/appends new event object after clicking submit button(callback fx from line 45)
+    resetEventForm(); // resets form to initial state after clicking submit button (callback fx from line 33)
   }
-  function resetEventForm() {
+  function resetEventForm() { // resets form to initial state; will be used for handleSubmit fx
     setNewEvent({
       id: "",
       eventType: "",
@@ -42,9 +42,9 @@ export default function NewEventForm({ handleAddEvent }) {
     setSelectOption("");
   }
 
-  function addEvent() {
+  function addEvent() { // creates/appends new event object using the current state (newEvent and selectOption); used as callback for handleSubmit fx
     const createEvent = {
-      id: generateUniqueID(),
+      id: generateUniqueID(), // generates id using installed npm package
       eventType: selectOption,
       name: newEvent.name,
       organizer: newEvent.organizer,
@@ -53,7 +53,7 @@ export default function NewEventForm({ handleAddEvent }) {
       date: newEvent.date,
       people: [],
     };
-    handleAddEvent(createEvent);
+    handleAddEvent(createEvent); // callback located in App.jsx because uses events useState which is also in App.jsx because it needs to be accessed by other components (it contains the eventsData)
   }
 
   return (
