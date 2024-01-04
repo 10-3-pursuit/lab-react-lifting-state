@@ -1,5 +1,6 @@
 import Attendees from './Attendees';
 export default function Event({ events, updateEventAttendance, showAttendees, toggleEventAttendees }) {
+
   return (
     <ul>
     {events.map((event) => {

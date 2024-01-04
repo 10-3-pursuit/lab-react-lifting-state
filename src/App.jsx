@@ -1,16 +1,15 @@
 import { useState } from "react";
 import eventsData from "./data";
-// import { v1 as generateUniqueID } from "uuid";
+import { v1 as generateUniqueID } from "uuid";
+// import Attendees from "./Attendees";
 import Event from "./Components/Event";
-import Footer from "./Components/Footer";
-import Header from "./Components/Header";
+// import Footer from "./Components/Footer";
+// import Header from "./Components/Header";
 import NewEventForm from "./Components/NewEventForm";
-import "./index.css"
-
 
 function App() {
   
-  const [events, setEvents] = useState(eventsData); // const [events, setEvents] = useState(eventsData);: Initializes events state with eventsData. This state holds the array of event objects. useState used in several components.
+  const [events, setEvents] = useState(eventsData); // const [events, setEvents] = useState(eventsData);: Initializes events state with eventsData. This state holds the array of event objects.
 
   const [showAttendees, setShowAttendees] = useState(false); // This controls whether the attendees of an event are displayed.
 
@@ -44,7 +43,46 @@ function App() {
     });
   }
 
+  function resetEventForm() {
+    setNewEvent({
+      id: "",
+      eventType: "",
+      name: "",
+      organizer: "",
+      eventImage: "",
+      date: "",
+    });
+    setSelectOption("");
+  }
+  function resetEventForm() {
+    setNewEvent({
+      id: "",
+      eventType: "",
+      name: "",
+      organizer: "",
+      eventImage: "",
+      date: "",
+    });
+    setSelectOption("");
+  }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    addEvent();
+    resetEventForm();
+  }
+  function addEvent() {
+    const createEvent = {
+      id: generateUniqueID(),
+      eventType: selectOption,
+      name: newEvent.name,
+      organizer: newEvent.organizer,
+      eventImage: newEvent.eventImage || null,
+      date: newEvent.date,
+      people: [],
+    };
+    handleAddEvent(createEvent);
+  }
 
   function handleAddEvent(event) {
     setEvents([event, ...events]);
@@ -70,19 +108,29 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <>
+        <header>
+          <h1 className="color-change-5x">RSVP App</h1>
+        </header>
+      </>
       <main>
         <NewEventForm
-        handleSubmit={handleSubmit} handleTextChange= {handleTextChange} handleAddEvent={handleAddEvent} newEvent = {newEvent} setNewEvent={setNewEvent} handleSelectChange={handleSelectChange} selectOption={selectOption} />
+        handleSubmit={handleSubmit} handleTextChange= {handleTextChange} newEvent = {newEvent} handleSelectChange={handleSelectChange} />
           <div className="events">
-          {/* <ul> added to Event.jsx */}
-            <Event events={events} updateEventAttendance={updateEventAttendance} showAttendees={showAttendees} toggleEventAttendees={toggleEventAttendees} />
-            {/* Attendees prop goes in Events.jsx to continue data flow */}
-            {/* <Attendees showAttendees={showAttendees} toggleEventAttendees={toggleEventAttendees} updateEventAttendance={updateEventAttendance}/> */}
+          {/* <ul> */}
+          <Event events={events} updateEventAttendance={updateEventAttendance} showAttendees={showAttendees} toggleEventAttendees={toggleEventAttendees}/>
           {/* </ul> */}
           </div>
       </main>
-      <Footer />
+      <>
+        <footer>
+          <ul>
+            <li>Contact</li>
+            <li>About</li>
+            <li>Legal</li>
+          </ul>
+        </footer>
+      </>
     </div>
   );
 }

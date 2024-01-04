@@ -1,33 +1,9 @@
-import { v1 as generateUniqueID } from "uuid";
-export default function NewEventForm({ handleSubmit, handleTextChange, handleAddEvent, newEvent, setNewEvent, handleSelectChange, selectOption}) {
-  function addEvent() {
-    const createEvent = {
-      id: generateUniqueID(),
-      eventType: selectOption,
-      name: newEvent.name,
-      organizer: newEvent.organizer,
-      eventImage: newEvent.eventImage || null,
-      date: newEvent.date,
-      people: [],
-    };
-    handleAddEvent(createEvent);
-  }
-  function resetEventForm() {
-    setNewEvent({
-      id: "",
-      eventType: "",
-      name: "",
-      organizer: "",
-      eventImage: "",
-      date: "",
-    });
-    setSelectOption("");
-  }
-  function handleSubmit(e) {
-    e.preventDefault();
-    addEvent();
-    resetEventForm();
-  }
+
+export default function NewEventForm({ handleSubmit, handleTextChange, newEvent, handleSelectChange }) {
+
+  
+
+
   return (
     <div className="new-event">
         <div className="new-event">
