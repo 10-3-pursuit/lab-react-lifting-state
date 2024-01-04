@@ -8,7 +8,8 @@ export default function Attendees({ showAttendees, attendees, event, updateEvent
         {!showAttendees ? "Show Attendees" : "Hide Attendees"}
       </button>
       {showAttendees ? (
-      <div key={event.id} className="attendees">
+        // corrected className syntax error
+      <div key={event.id} className="attendee">
         {attendees.map(attendee => (
         // add attendee prop here where HTML code used to be (HTML placed in Attendee component)
         <Attendee key={attendee.id} attendee={attendee} event={event} updateEventAttendance={updateEventAttendance} />

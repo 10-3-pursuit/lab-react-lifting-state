@@ -34,15 +34,15 @@ function App() {
       <div className="new-event">
         <NewEventForm handleAddEvent={handleAddEvent} useState={useState} />
       </div>
-          <div className="events">
-          <ul>
+      <div className="events">
+        <ul>
           {events.map((event) => {
               const { people: attendees } = event;
               // list item being returned (see Event.jsx for contents of props) fixed typo (prop is supposed to be event={event})
               return <Event key={event.id} event={event} attendees={attendees} updateEventAttendance={updateEventAttendance} useState={useState}/>
-            })}
-          </ul>
-          </div>
+          })}
+        </ul>
+      </div>
       </main>
         <Footer />
     </div>

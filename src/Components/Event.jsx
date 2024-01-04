@@ -7,7 +7,8 @@ export default function Event({ event, attendees, updateEventAttendance }) { // 
     setShowAttendees(!showAttendees);
   }
   return (
-      <li>
+    // as per README.md instructions add className "event" to li
+      <li className='event'>
         <img src={event.eventImage} alt={event.name} />
           <h5>
             {event.name} {event.eventType}
