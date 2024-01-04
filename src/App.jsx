@@ -1,220 +1,50 @@
 import { useState } from "react";
 import eventsData from "./data";
-import { v1 as generateUniqueID } from "uuid";
-// import Attendees from "./Attendees";
-// import Event from "./Components/Event";
-// import Footer from "./Components/Footer";
-// import Header from "./Components/Header";
-// import NewEventForm from "./Components/NewEventForm";
+import Event from "./Components/Event";
+import Footer from "./Components/Footer";
+import Header from "./Components/Header";
+import NewEventForm from "./Components/NewEventForm";
 
 function App() {
-  const [events, setEvents] = useState(eventsData);
+  const [events, setEvents] = useState(eventsData); // const [events, setEvents] = useState(eventsData);: Initializes events state with eventsData. This state holds the array of event objects.
 
-  const [showAttendees, setShowAttendees] = useState(false);
-
-  const [selectOption, setSelectOption] = useState("");
-
-  const [newEvent, setNewEvent] = useState({
-    id: "",
-    eventType: "",
-    name: "",
-    organizer: "",
-    eventImage: "",
-    date: "",
-    people: [],
-  });
-
-  function addEvent() {
-    const createEvent = {
-      id: generateUniqueID(),
-      eventType: selectOption,
-      name: newEvent.name,
-      organizer: newEvent.organizer,
-      eventImage: newEvent.eventImage || "https://loremflickr.com/640/480/",
-      date: newEvent.date,
-      people: [],
-    };
-    handleAddEvent(createEvent);
-  }
-
-  function handleSelectChange(e) {
-    setSelectOption(e.target.value);
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    addEvent();
-    resetEventForm();
-  }
-
-  function handleTextChange(e) {
-    setNewEvent({
-      ...newEvent,
-      [e.target.id]: e.target.value,
-    });
-  }
-
-  function resetEventForm() {
-    setNewEvent({
-      id: "",
-      eventType: "",
-      name: "",
-      organizer: "",
-      eventImage: "",
-      date: "",
-    });
-    setSelectOption("");
-  }
-
-  function handleAddEvent(event) {
-    setEvents([event, ...events]);
-  }
-
-  function toggleEventAttendees() {
-    setShowAttendees(!showAttendees);
+  function handleAddEvent(event) { // called when new event created
+    setEvents([event, ...events]); // adds new event to beginning of shallow copy of events array (spread operator makes shallow copy)
   }
 
   function updateEventAttendance(eventId, attendeeId) {
-    const eventArray = [...events];
-    const eventIndex = eventArray.findIndex((event) => eventId === event.id);
-    const event = { ...eventArray[eventIndex] };
-    const personIndex = event.people.findIndex(
+    const eventArray = [...events]; // makes shallow copy of the events array
+    const eventIndex = eventArray.findIndex((event) => eventId === event.id); // using callback fx event uses event.id to check elements while iterating through eventArray until finds index of element with matching event.id
+    const event = { ...eventArray[eventIndex] }; // creates a shallow copy of the event object to be updated to avoid direct mutation of the event object in the state
+    const personIndex = event.people.findIndex( // find the index of the specific attendee in the event's 'people' array identified by their unique 'attendeeId'
       (person) => person.id === attendeeId
     );
-    const peopleArray = [...event.people];
-    peopleArray[personIndex].attendance = !peopleArray[personIndex].attendance;
-    event.people = peopleArray;
-    eventArray[eventIndex] = event;
-    setEvents(eventArray);
+    const peopleArray = [...event.people]; // create a shallow copy of the event's 'people' array to allow update of the attendee's attendance status
+    peopleArray[personIndex].attendance = !peopleArray[personIndex].attendance; // toggle attendance status of the attendee && if marked as attending, they will now be marked as not attending, and vice versa
+
+    event.people = peopleArray; // updates the event's 'people' array with the modified 'peopleArray' lol javascript stuff
+    eventArray[eventIndex] = event; // updates the specific event in the 'eventArray' with the updated 'event'
+    setEvents(eventArray); // sets new 'eventArray' as the updated state to re-render the components that depend on the 'events' state.
   }
 
   return (
     <div className="App">
-      <>
-        <header>
-          <h1 className="color-change-5x">RSVP App</h1>
-        </header>
-      </>
+      <Header />
       <main>
-        <div className="new-event">
-          <>
-            <form onSubmit={handleSubmit}>
-              <h3>Create a new event</h3>
-              <label htmlFor="name">Event name:</label>
-              <input
-                type="text"
-                id="name"
-                onChange={handleTextChange}
-                value={newEvent.name}
-              />
-
-              <label htmlFor="organizer">Organizer:</label>
-              <input
-                type="text"
-                id="organizer"
-                onChange={handleTextChange}
-                value={newEvent.organizer}
-              />
-
-              <label htmlFor="eventImage">Event image:</label>
-              <input
-                type="text"
-                id="eventImage"
-                onChange={handleTextChange}
-                value={newEvent.eventImage}
-              />
-              <label htmlFor="eventType">Event type:</label>
-              <select id="eventType" onChange={handleSelectChange}>
-                <option value=""></option>
-                <option value="Birthday">Birthday</option>
-                <option value="Anniversary">Anniversary</option>
-                <option value="Intramural Sport">Intramural Sport</option>
-                <option value="Watch Party">Watch Party</option>
-                <option value="wedding">Wedding</option>
-              </select>
-              <br />
-              <input type="submit" />
-            </form>
-          </>
-        </div>
-        <div className="events">
-          <ul>
-            {events.map((event) => {
+      <div className="new-event">
+        <NewEventForm handleAddEvent={handleAddEvent} useState={useState} />
+      </div>
+      <div className="events">
+        <ul>
+          {events.map((event) => {
               const { people: attendees } = event;
-
-              return (
-                <>
-                  <li key={event.id}>
-                    <img src={event.eventImage} alt={event.name} />
-                    <h5>
-                      {event.name} {event.eventType}
-                    </h5>
-                    <br />
-                    <span>Organized by: {event.organizer} </span>
-                    <br />
-                    <>
-                      <button onClick={toggleEventAttendees}>
-                        {!showAttendees ? "Show Attendees" : "Hide Attendees"}
-                      </button>
-
-                      {showAttendees ? (
-                        <div className="attendees">
-                          {attendees.map((attendee, index) => (
-                            <>
-                              <div key={attendee.id} className="attendee">
-                                <p>
-                                  <img
-                                    src={attendee.avatar}
-                                    alt={attendee.firstName}
-                                  />
-                                  {"   "}
-                                  <span>
-                                    {" "}
-                                    {attendee.firstName} {attendee.lastName}{" "}
-                                  </span>
-                                </p>
-                                <p>
-                                  <button
-                                    className="clickable"
-                                    onClick={() =>
-                                      updateEventAttendance(
-                                        event.id,
-                                        attendee.id
-                                      )
-                                    }
-                                  >
-                                    Attending:
-                                  </button>
-                                  <span>
-                                    {attendee.attendance ? "✅" : "❌"}
-                                  </span>
-                                </p>
-
-                                <p>
-                                  <span>Note:</span> {attendee.note}
-                                </p>
-                              </div>
-                            </>
-                          ))}
-                        </div>
-                      ) : null}
-                    </>
-                  </li>
-                </>
-              );
-            })}
-          </ul>
-        </div>
+              // list item being returned (see Event.jsx for contents of props) fixed typo (prop is supposed to be event={event})
+              return <Event key={event.id} event={event} attendees={attendees} updateEventAttendance={updateEventAttendance} useState={useState}/>
+          })}
+        </ul>
+      </div>
       </main>
-      <>
-        <footer>
-          <ul>
-            <li>Contact</li>
-            <li>About</li>
-            <li>Legal</li>
-          </ul>
-        </footer>
-      </>
+        <Footer />
     </div>
   );
 }

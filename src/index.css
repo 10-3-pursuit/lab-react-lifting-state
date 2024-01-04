@@ -191,7 +191,8 @@ input[type="submit"] {
   }
 }
 
-@media only screen and (max-width: 1000px) {
+/* changed media query so Desktop App resembles example in README.md */
+@media only screen and (max-width: 500px) {
   .new-event {
     min-width: 400px;
     width: 100%;
