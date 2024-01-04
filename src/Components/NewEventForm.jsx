@@ -1,8 +1,60 @@
 
-export default function NewEventForm({ handleSubmit, handleTextChange, newEvent, handleSelectChange }) {
+import { useState } from "react";
+import { v1 as generateUniqueID } from "uuid";
+export default function NewEventForm({ handleAddEvent, useState }) {
 
-  
+  const [selectOption, setSelectOption] = useState(""); // const [selectOption, setSelectOption] = useState("");: Initializes selectOption state to an empty string. It holds the selected option for the event type.
 
+  const [newEvent, setNewEvent] = useState({
+    id: "",
+    eventType: "",
+    name: "",
+    organizer: "",
+    eventImage: "",
+    date: "",
+    people: [],
+  });
+
+  function handleTextChange(e) {
+    setNewEvent({
+      ...newEvent,
+      [e.target.id]: e.target.value,
+    });
+  }
+
+  function handleSelectChange(e) {
+    setSelectOption(e.target.value);
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    addEvent();
+    resetEventForm();
+  }
+  function resetEventForm() {
+    setNewEvent({
+      id: "",
+      eventType: "",
+      name: "",
+      organizer: "",
+      eventImage: "",
+      date: "",
+    });
+    setSelectOption("");
+  }
+
+  function addEvent() {
+    const createEvent = {
+      id: generateUniqueID(),
+      eventType: selectOption,
+      name: newEvent.name,
+      organizer: newEvent.organizer,
+      eventImage: newEvent.eventImage || "https://loremflickr.com/640/480/",
+      // changed null back to original value (string representing a link to an image)
+      date: newEvent.date,
+      people: [],
+    };
+    handleAddEvent(createEvent);
+  }
 
   return (
     <div className="new-event">

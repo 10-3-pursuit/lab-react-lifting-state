@@ -1,12 +1,13 @@
 import Attendees from './Attendees';
-export default function Event({ events, updateEventAttendance, showAttendees, toggleEventAttendees }) {
+import { useState } from "react";
 
+export default function Event({ event, attendees, updateEventAttendance }) {
+  const [showAttendees, setShowAttendees] = useState(false); // This controls whether the attendees of an event are displayed.
+  function toggleEventAttendees() {
+    setShowAttendees(!showAttendees);
+  }
   return (
-    <ul>
-    {events.map((event) => {
-      const { people: attendees } = event;
-      return (
-      <li key={event.id}>
+      <li>
         <img src={event.eventImage} alt={event.name} />
           <h5>
             {event.name} {event.eventType}
@@ -16,9 +17,6 @@ export default function Event({ events, updateEventAttendance, showAttendees, to
           <br />
           <Attendees showAttendees={showAttendees} attendees={attendees} event={event}  updateEventAttendance={updateEventAttendance} toggleEventAttendees={toggleEventAttendees} />
       </li>
-      );
-      })}
-      </ul>
   );
 }
 

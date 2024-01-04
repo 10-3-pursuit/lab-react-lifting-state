@@ -1,4 +1,4 @@
-import Attendee from "./Attendee";
+//import Attendee from "./Attendee";
 export default function Attendees({ showAttendees, attendees, event, updateEventAttendance, toggleEventAttendees }) {
   if (!showAttendees) return null;
   return (
