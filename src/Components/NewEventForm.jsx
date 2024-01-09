@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { v1 as generateUniqueID } from "uuid";
 
-export default function NewEventForm() {
+
+export default function NewEventForm({ events, setEvents }) {
   const [selectOption, setSelectOption] = useState("");
 
   const [newEvent, setNewEvent] = useState({
