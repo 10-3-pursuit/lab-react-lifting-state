@@ -4,7 +4,7 @@ import { v1 as generateUniqueID } from "uuid";
 // import Attendees from "./Attendees";
 // import Event from "./Components/Event";
 // import Footer from "./Components/Footer";
-// import Header from "./Components/Header";
+import Header from "./Components/Header";
 // import NewEventForm from "./Components/NewEventForm";
 
 function App() {
@@ -91,9 +91,7 @@ function App() {
   return (
     <div className="App">
       <>
-        <header>
-          <h1 className="color-change-5x">RSVP App</h1>
-        </header>
+        <Header></Header>
       </>
       <main>
         <div className="new-event">
